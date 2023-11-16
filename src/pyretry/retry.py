@@ -5,6 +5,7 @@ import time
 import argparse
 import subprocess
 
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--tries", type=int, default=3, help="Maximum number of tries to attempt (default: 3)")
@@ -50,12 +51,13 @@ def main():
 
     if returncode != 0:
         if attempts >= args.tries:
-            print(f"[ERROR] Max retries reached, aborting")
+            print("Error: Max retries reached, aborting")
         elif time.monotonic() >= max_end_time:
-            print(f"[ERROR] Max time reached, aborting")
+            print("Error: Max time reached, aborting")
         else:
-            print(f"[ERROR] Exited but we don't know why, aborting")
+            print("Error: Exited but we don't know why, aborting")
         sys.exit(returncode)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
